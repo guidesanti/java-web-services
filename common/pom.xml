@@ -4,13 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>4.3.19.RELEASE</version>
-        </dependency>
-    </dependencies>
 
     <parent>
         <groupId>br.com.eventhorizon</groupId>
@@ -18,10 +11,28 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+    <groupId>br.com.eventhorizon</groupId>
     <artifactId>common</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>common</name>
+    <description>Common classes to be used by the other Java web services demo projects</description>
 
     <build>
         <finalName>${project.artifactId}</finalName>
     </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>
