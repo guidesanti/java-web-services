@@ -2,18 +2,10 @@
 
 echo
 echo "============================================================================================="
-echo "Building the project ..."
-echo "============================================================================================="
-echo
-mvn clean install
-sleep 1
-
-echo
-echo "============================================================================================="
 echo "Removing old Docker containers ..."
 echo "============================================================================================="
 echo
-DOCKER_CONTAINER_NAME="servlet-web-service"
+DOCKER_CONTAINER_NAME="java-web-services"
 DOCKER_CONTAINER_IDS=`docker container ls -f name=${DOCKER_CONTAINER_NAME} -a -q`
 for DOCKER_CONTAINER_ID in ${DOCKER_CONTAINER_IDS}; do
     echo "Stopping container ${DOCKER_CONTAINER_ID}"
@@ -28,7 +20,7 @@ echo "==========================================================================
 echo "Removing old Docker images ..."
 echo "============================================================================================="
 echo
-DOCKER_IMAGE_NAME="servlet-web-service"
+DOCKER_IMAGE_NAME="java-web-services"
 DOCKER_OLD_IMAGES=`docker image ls -q ${DOCKER_IMAGE_NAME}`
 for DOCKER_IMAGE_ID in ${DOCKER_OLD_IMAGES}; do
     echo "Removing image ${DOCKER_IMAGE_ID}"
@@ -46,7 +38,7 @@ echo "==========================================================================
 echo "Building the new Docker image ..."
 echo "============================================================================================="
 echo
-docker build -t servlet-web-service:1.0.0 .
+docker build -t ${DOCKER_IMAGE_NAME} .
 sleep 1
 
 exit 0

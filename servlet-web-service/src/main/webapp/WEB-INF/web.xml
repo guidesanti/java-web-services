@@ -8,12 +8,12 @@
     <!--<listener-class>br.com.eventhorizon.servletwebservice.RequestListener</listener-class>-->
   <!--</listener>-->
   <servlet>
-    <servlet-name>beersServlet</servlet-name>
-    <servlet-class>br.com.eventhorizon.servletwebservice.BeersServlet</servlet-class>
+    <servlet-name>beers1Servlet</servlet-name>
+    <servlet-class>br.com.eventhorizon.servletwebservice.Beers1Servlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>beersServlet</servlet-name>
-    <url-pattern>/beers</url-pattern>
+    <servlet-name>beers1Servlet</servlet-name>
+    <url-pattern>/beers1</url-pattern>
   </servlet-mapping>
   <!--<filter>-->
     <!--<filter-name>emptyParamFilter</filter-name>-->

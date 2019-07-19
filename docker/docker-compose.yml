@@ -1,0 +1,29 @@
+version: '2'
+
+services:
+  java-web-services:
+    image: java-web-services:latest
+    container_name: java-web-services
+    command: /usr/local/tomcat/bin/catalina.sh run
+    ports:
+      - '8080:8080'
+    environment:
+      MY_ENVE: "myEnvValue"
+#      JAVA_OPTS: "-Dcom.symphony.cloud.storage.provider=simulator -Dcom.symphony.msgstore.persist=true -DappMetrics.activeLevel=1 -DappMetrics.reportInterval=10000 -DappMetrics.reporterTypes=Jmx -agentlib:jdwp=transport=dt_socket,server=y,address=5000,suspend=n -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=10483 -Dcom.sun.management.jmxremote.rmi.port=10483 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Djava.rmi.server.hostname=localhost.symphony.com"
+    networks:
+      localbridge:
+        aliases:
+          - javawebservices
+    extra_hosts:
+      - "localhost.eventhorizon.com.br:127.0.0.1"
+    volumes:
+      # CATALINA_OPTS via setenv.sh
+#      - ./setenv.sh:/opt/tomcat/bin/setenv.sh
+
+      # War files
+      - ../servlet-web-service/target/servlet-web-service.war:/usr/local/tomcat/webapps/servlet-web-service.war
+      - ../spring-web-mvc-web-service/target/spring-web-mvc-web-service.war:/usr/local/tomcat/webapps/spring-web-mvc-web-service.war
+
+networks:
+  localbridge:
+    driver: bridge

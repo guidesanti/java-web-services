@@ -12,14 +12,14 @@
     </parent>
 
     <artifactId>common</artifactId>
-    <packaging>jar</packaging>
     <name>common</name>
+    <description>Common classes to be used by the other Java web services demo projects</description>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${spring.version}</version>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
         </dependency>
     </dependencies>
 
