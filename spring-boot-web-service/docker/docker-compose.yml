@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  spring-boot-web-service:
+    image: spring-boot-web-service:latest
+    build: ./
+    container_name: spring-boot-web-service
+    command: java -jar /data/spring-boot-web-service-app.jar
+    environment:
+      JAVA_OPTS: "-Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=6000,suspend=n -Djavax.net.debug=ssl:handshake"
+    domainname: eventhorizon.com.br
+    hostname: spring-boot-web-service
+    extra_hosts:
+      - "localhost:127.0.0.1"
+      - "localhost.eventhorizon.com.br:127.0.0.1"
+      - "spring-boot-web-service:127.0.0.1"
+      - "spring-boot-web-servic.eventhorizon.com.br:127.0.0.1"
+    networks:
+      localbridge:
+        aliases:
+          - spring-boot-web-service
+          - spring-boot-web-service.eventhorizon.com.br
+    ports:
+      - '8080:8080'
+      - '6000:6000'
+    volumes:
+      - ./target/spring-boot-web-service-app.jar:/data/spring-boot-web-service-app.jar
+
+networks:
+  localbridge:
+    driver: bridge

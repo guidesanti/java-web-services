@@ -15,61 +15,30 @@
 	<groupId>br.com.eventhorizon</groupId>
 	<artifactId>spring-boot-web-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>spring-boot-web-service</name>
 	<description>Demo project for Spring Boot web service</description>
 
 	<properties>
-		<java.version>1.8</java.version>
+		<!-- General Properties -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.minimum.maven.version>3.0.5</project.minimum.maven.version>
+		<maven.compiler.release>11</maven.compiler.release>
+		<skipUnitTests>true</skipUnitTests>
+		<skipIntegrtionTests>true</skipIntegrtionTests>
+
+		<!-- Plugin Versions -->
+		<maven.versions.version>2.7</maven.versions.version>
+		<maven.compiler.version>3.8.1</maven.compiler.version>
+		<maven.surefire.version>3.0.0-M4</maven.surefire.version>
+		<maven.enforcer.version>3.0.0-M3</maven.enforcer.version>
+		<spring.boot.maven.plugin.version>2.3.0.M3</spring.boot.maven.plugin.version>
+
+		<!-- Dependency Versions -->
+		<spring.boot.starter.web.version>2.3.0.M3</spring.boot.starter.web.version>
+		<spring.boot.starter.tomcat>2.3.0.M3</spring.boot.starter.tomcat>
+		<spring.boot.starter.test>2.3.0.M3</spring.boot.starter.test>
 	</properties>
-
-	<dependencies>
-		<dependency>
-			<groupId>br.com.eventhorizon</groupId>
-			<artifactId>common</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
-
-	<build>
-		<finalName>${project.artifactId}</finalName>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
-
-	<repositories>
-		<repository>
-			<id>spring-snapshots</id>
-			<name>Spring Snapshots</name>
-			<url>https://repo.spring.io/snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-		</repository>
-	</repositories>
 
 	<pluginRepositories>
 		<pluginRepository>
@@ -87,4 +56,215 @@
 		</pluginRepository>
 	</pluginRepositories>
 
+	<repositories>
+		<repository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>https://repo.spring.io/snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>br.com.eventhorizon</groupId>
+			<artifactId>common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<version>${spring.boot.starter.web.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<version>${spring.boot.starter.tomcat}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+            <version>${spring.boot.starter.test}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+
+		<pluginManagement>
+			<plugins>
+				<!-- Versions Plugin -->
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>versions-maven-plugin</artifactId>
+					<version>${maven.versions.version}</version>
+				</plugin>
+
+				<!-- Compiler Plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven.compiler.version}</version>
+				</plugin>
+
+				<!-- Surefire Plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${maven.surefire.version}</version>
+				</plugin>
+
+				<!-- Enforcer Plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-enforcer-plugin</artifactId>
+					<version>${maven.enforcer.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<version>${spring.boot.maven.plugin.version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<!-- Versions Plugin -->
+			<!-- Used to find the latest version of plugins and dependencies.
+            Usage:
+            - Check plugin updates: mvn versions:display-plugin-updates
+            - Check dependency updates: mvn versions:display-dependency-updates
+            -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<configuration>
+					<generateBackupPoms>false</generateBackupPoms>
+				</configuration>
+			</plugin>
+
+			<!-- Compiler Plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<fork>true</fork>
+					<executable>${java.home}/bin/javac</executable>
+				</configuration>
+			</plugin>
+
+			<!-- Surefire Plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skipTests>${skipUnitTests}</skipTests>
+				</configuration>
+			</plugin>
+
+			<!-- Enforcer Plugin -->
+			<!-- Used to enforce a minimum version of Maven. -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>enforce-maven</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireMavenVersion>
+									<version>${project.minimum.maven.version}</version>
+								</requireMavenVersion>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<!-- =================================================================================== -->
+		<!-- Docker Profile -->
+		<!-- Usage: mvn clean [test|...|verify|install] -P UnitTests -->
+		<!-- =================================================================================== -->
+		<profile>
+			<id>docker</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
+						<configuration>
+							<finalName>${project.artifactId}</finalName>
+							<classifier>app</classifier>
+							<outputDirectory>${project.basedir}/docker/target</outputDirectory>
+						</configuration>
+						<executions>
+							<execution>
+								<id>build-info</id>
+								<goals>
+									<goal>build-info</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>repackaging</id>
+								<goals>
+									<goal>repackage</goal>
+								</goals>
+							</execution>
+<!--							<execution>-->
+<!--								<id>pre-integration-test</id>-->
+<!--								<goals>-->
+<!--									<goal>start</goal>-->
+<!--								</goals>-->
+<!--								<configuration>-->
+<!--									<skip>${skipUnitTests}</skip>-->
+<!--								</configuration>-->
+<!--							</execution>-->
+<!--							<execution>-->
+<!--								<id>post-integration-test</id>-->
+<!--								<goals>-->
+<!--									<goal>stop</goal>-->
+<!--								</goals>-->
+<!--								<configuration>-->
+<!--									<skip>${skipUnitTests}</skip>-->
+<!--								</configuration>-->
+<!--							</execution>-->
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<!-- =================================================================================== -->
+		<!-- Unit Tests Profile -->
+		<!-- Usage: mvn clean [test|...|verify|install] -P UnitTests -->
+		<!-- =================================================================================== -->
+		<profile>
+			<id>UnitTests</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<skipUnitTests>false</skipUnitTests>
+			</properties>
+		</profile>
+	</profiles>
 </project>

@@ -7,7 +7,7 @@ The organization of the repo
 
 - [JAX-RS Jersey](./jaxrs-jersey-web-service)
 - [Pure Servlet](./servlet-web-service)
-- [Spring Boot with embedded Tomcat](./spring-boot-web-service)
+- [Spring Boot with embedded Tomcat](./spring-boot-web-service/README.md)
 
 ## License
 
