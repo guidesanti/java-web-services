@@ -1,4 +1,4 @@
-# Folders API
+# Spring Boot Web Service
 
 ## Environment Set Up
 
