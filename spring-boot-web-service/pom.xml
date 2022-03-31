@@ -35,7 +35,7 @@
 		<spring.boot.maven.plugin.version>2.3.0.M3</spring.boot.maven.plugin.version>
 
 		<!-- Dependency Versions -->
-		<spring.boot.starter.web.version>2.3.0.M3</spring.boot.starter.web.version>
+		<spring.boot.starter.web.version>2.5.12</spring.boot.starter.web.version>
 		<spring.boot.starter.tomcat>2.3.0.M3</spring.boot.starter.tomcat>
 		<spring.boot.starter.test>2.3.0.M3</spring.boot.starter.test>
 	</properties>
